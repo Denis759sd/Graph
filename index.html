@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>mg</title>
+    <script src="mg.js"></script>
+</head>
+<body>
+    <canvas id="canvasGraph" width="400" height="упцупцупцупorder:1px solid #000000;"></canvas>
+
+ 	<!--Выбор графика (чекбоксы)-->
+	<div>
+        Траектория:
+        <font color="#000000" size="5"><B>—</B></font>
+		<input type="checkbox" id="checkbox_01" name="" onchange="app.setCheckbox_01(this.checked);" checked/>актуальная,
+		<font color="CCCCCC" size="5"><B>—</B></font>
+		<input type="checkbox" id="checkbox_02" name="" onchange="app.setCheckbox_02(this.checked);" checked/>оптимальная (<I>α</I> = 45˚)
+    </div>	
+
+    <!--Установка параметров взаимодействия (текстовые поля и слайдеры)-->
+    <div>
+		Угол броска:
+        <font face= "Times New Roman">
+		<I>α</I> = <input id="Text_01" style="width: 2.2ex;" required pattern="[-+]?([0-9]*\.[0-9]+|[0-9]+)" oninput="
+            // если введено не число - строка не пройдет валидацию по паттерну выше, и checkValidity() вернет false
+            if (!this.checkValidity()) return;
+            app.set_01(this.value);
+            document.getElementById('Slider_01').value = this.value;
+        ">˚
+		<input type="range" id="Slider_01" style="width: 100px;" oninput="app.set_01(this.value); document.getElementById('Text_01').value = this.value;">
+		</font>
+	</div>
+    
+	<script type="text/javascript">var app = new MainMG(
+		document.getElementById('canvasGraph')
+	);</script>
+
+</body>
+</html>
